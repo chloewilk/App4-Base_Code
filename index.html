@@ -7,43 +7,59 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
 Authors in chronological order of contribution:
 Tim Riedel
-Author 2
+Chloe Wilk
  
 Further Information:
-http://diystream.cns.utexas.edu/
-
+http://cns.utexas.edu/fri
+ 
 Research Educator:
 Timothy Riedel
 triedel@utexas.edu
- 
+
 Brief Description of Goal of Code:
-blah, blah, blah,
+This code was developed in order to create a diagnostic tool to differentiate between a cold and allergies. 
  
 Known Issues:
-blah, blah, blah, blah
-Ignore this error message if you see it using the javaScript console: Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.
+Potential issues with calculations not functioning properly. 
 
-References:
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
-	
-<head> 
-	<title>Hello World</title>  
-]	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<link rel="stylesheet" href="w3.css">
-	<link rel="stylesheet" href="w3-colors-flat.css">
-</head> 
+   <head> 
+      <title>Cold or Allergies?</title>  
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <link rel="stylesheet" href="w3.css">
+      <link rel="stylesheet" href="w3-colors-flat.css">
+   </head> 
 
 <script>
+    var allergy_count = 0;
+    var cold_count = 0;
 
-	//YOUR JAVASCRIPT GOES HERE
+    // Increment allergy count
+    function allergyAdd(){
+        allergy_count = allergy_count + 1;
+    }
 
-</script>	
+    // Increment cold count
+    function coldAdd(){
+        cold_count = cold_count + 1;
+    }
 
+    // Calculate percentage for allergy and cold
+    function resultsPercent(){
+        var total_questions = 4; // Total number of questions
+        var allergy_percentage = (allergy_count / total_questions) * 100;
+        var cold_percentage = (cold_count / total_questions) * 100;
 
-<!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DONT MESS WITH IT -->
+        // Display the result
+        var resultsText = document.getElementById('resultsText');
+        resultsText.innerHTML = "Probability of Allergies: " + allergy_percentage.toFixed(2) + "%<br>" +
+                                "Probability of Cold: " + cold_percentage.toFixed(2) + "%";
+    }
+</script>
+
 <style>	
 .body {
      margin: 0em;
@@ -60,16 +76,89 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     background-color: hsl(0,0%,100%);
 }
 
-  .page:target {
+.page:target {
     left: 0vw;
     z-index: 1;
 }
 </style>
 
 <body>
-	
-	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO -->
-	REPLACE THIS TEXT
-	
+<div id="header" class="w3-container w3-flat-carrot">
+	<h1>Cold or Allergies?</h1>
+</div>
+
+<div id="content" class="w3-container">
+	<p>Are you feeling like you might have a cold but wonder if it is allergies? Answer a few short questions to find out!</p>
+	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+
+<!-- Question 1 -->
+<div class="page" id="one">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 1</h1>
+	</div>
+
+    	<div id="content" class="w3-container">
+        <p>Are your eyes watery or itchy?</p>    
+    	</div>
+	<a href="#two" onclick="allergyAdd();" class="w3-btn w3-black">Yes</a>
+    <a href="#two" onclick="coldAdd();" class="w3-btn w3-black">No</a>
+</div>
+
+<!-- Question 2 -->
+<div class="page" id="two">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 2</h1>
+	</div>
+
+	<div id="content" class="w3-container">
+		<p>Do you have a fever?</p>
+	</div>
+	<a href="#three" onclick="allergyAdd();" class="w3-btn w3-black">Yes</a>
+    <a href="#three" onclick="coldAdd();" class="w3-btn w3-black">No</a>
+</div>	
+
+<!-- Question 3 -->
+<div class="page" id="three">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 3</h1>
+	</div>
+
+	<div id="content" class="w3-container">
+		<p>Do you have a sore throat?</p>
+	</div>
+	<a href="#four" onclick="allergyAdd();" class="w3-btn w3-black">Yes</a>
+    <a href="#four" onclick="coldAdd();" class="w3-btn w3-black">No</a>
+</div>
+
+<!-- Question 4 -->
+<div class="page" id="four">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 4</h1>
+	</div>
+
+	<div id="content" class="w3-container">
+		<p>Are your symptoms seasonal or chronic?</p>
+	</div>
+	<a href="#results" onclick="allergyAdd();" class="w3-btn w3-black">Yes</a>
+    <a href="#results" onclick="coldAdd();" class="w3-btn w3-black">No</a>
+
+<!-- Results Page -->
+<div class="page" id="results">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Results</h1>
+	</div>
+
+	<div id="content" class="w3-container">
+		<p id="resultsText"></p>
+        <a href="#results" onclick="resultsPercent();" class="w3-btn w3-black"> Show Results </a>
+	</div>
+</div>
+
+<footer class="w3-bottom w3-container w3-flat-carrot">
+	<p>DIY!</p>
+</footer>
+
 </body>
 </html>

@@ -163,18 +163,17 @@ resultsText.innerHTML = "Probability of PMS: " + PMS_percentage.toFixed(2) + "%<
 	<a href="#results" onclick="pregnancyAdd();" class="w3-btn w3-black">Yes</a> <!-- "Yes" button, adds "1" to pregnancy count -->
     <a href="#results" onclick="pmsAdd();" class="w3-btn w3-black">No</a> <!-- "No" button, adds "1" to PMS count -->
 
-</div>
 <!-- Results Page -->
 <div class="page" id="results">
 	<div class="w3-container w3-flat-carrot">
-		<h1>Results</h1> <!-- Results page title -->
+		<h1>Results</h1> <!-- Results Title -->
 	</div>
 
 	<div id="content" class="w3-container">
-		<p id="resultsText"></p>
+		<p id="resultsText"></p> <!-- Display result text here -->
         <a href="#results" onclick="resultsPercent();" class="w3-btn w3-black"> Show Results </a> <!-- Button to calculate and show results -->
-		<!-- Results page content, displays percentage of PMS and pregnancy symptoms. -->
-	</div>
+
+</div>
 </div>
 
 <footer class="w3-bottom w3-container w3-flat-carrot">
